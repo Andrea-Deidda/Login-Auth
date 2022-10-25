@@ -1,0 +1,19 @@
+<div class="container pt-4">
+    <div class="row pb-2">
+        <div> 
+            <button mat-raised-button color="light">Logout</button>
+        </div>
+    </div>
+    <div *ngIf="!(localStorage)">
+        <mat-card>
+            <div>Login failed</div>
+        </mat-card>
+    </div>
+
+    <div *ngIf="localStorage">
+        <mat-card>
+            <div>Login successfully</div>
+        </mat-card>
+    </div>
+
+</div>
