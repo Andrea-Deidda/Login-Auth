@@ -12,6 +12,10 @@ export class ApicallService {
     return this.http.post('http://localhost:3000/auth/login', userData )
   }
 
+  logOut() {
+    sessionStorage.clear()
+  }
+
   registerUser(userData: any){
     return this.http.post('http://localhost:3000/auth/register', userData)
   }

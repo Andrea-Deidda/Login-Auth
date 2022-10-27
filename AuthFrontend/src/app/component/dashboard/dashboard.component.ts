@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ApicallService } from '../../shared/apicall.service';
+import { UserService } from '../../shared/userService/user.service';
+import {LoginComponent} from "../login/login.component";
 
 @Component({
   selector: 'app-dashboard',
@@ -8,14 +10,17 @@ import { ApicallService } from '../../shared/apicall.service';
 })
 export class DashboardComponent implements OnInit {
 
-  constructor(public apicalService : ApicallService) { }
+  constructor(public apicalService : ApicallService, public userService : UserService){ }
 
   localStorage!: any;
+  username!: any;
 
   ngOnInit(): void {
+    this.username = sessionStorage.getItem('username')
+    console.log("user loggato come: ",this.username)
     this.localStorage = localStorage.getItem('token')
     if(localStorage.getItem('token')) {
-      console.log(localStorage)
+
       this.apicalService.gotoDashboard(localStorage.getItem('token')).subscribe((res : any) =>{
         if(res && res['status'] === 'ok'){
           console.log('we are in dashboard')
@@ -30,5 +35,6 @@ export class DashboardComponent implements OnInit {
     }
 
   }
+
 
 }

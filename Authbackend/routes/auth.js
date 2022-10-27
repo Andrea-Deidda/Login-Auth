@@ -41,6 +41,16 @@ router.get('/dashboard', verifyToken, async (req, res) =>{
     // console.log("welcome dashboard")
 })
 
+router.get('/getUser/:userId', async (req, res) =>{
+    try{
+        const user = await authModelSchema.findById(req.params.userId);
+        //console.log(req);
+        res.json(user);
+    }catch(err){
+        res.json({message: err});
+    }
+})
+
 router.post('/register', async(req, res) => {
     const registerUserData = {
         username: req.body.username,
