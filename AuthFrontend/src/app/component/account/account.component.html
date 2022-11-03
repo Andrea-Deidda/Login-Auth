@@ -1,0 +1,83 @@
+<div class="container" style="padding-top: 2rem;">
+  <mat-card>
+    <mat-card-title style="text-align: center; padding: 1rem">Account</mat-card-title>
+
+  </mat-card>
+
+      <div class="row">
+        <div class="col-6">
+          <mat-card style="margin: 1rem">
+            <form class="example-form" [formGroup]="UserRegistrationForm" (ngSubmit)="OnSubmit()">
+              <mat-form-field class="example-full-width" appearance="outline" style="width: 100% ;">
+                <mat-label>Username</mat-label>
+                <input matInput matInput placeholder="Username" formControlName="username">
+              </mat-form-field>
+
+              <mat-form-field class="example-full-width" appearance="outline" style="width: 100% ;">
+                <mat-label>Email</mat-label>
+                <input matInput matInput placeholder="Email" formControlName="email">
+              </mat-form-field>
+
+              <mat-form-field appearance="outline" style="width: 100%;">
+                <mat-label>Choose a date</mat-label>
+                <input matInput [matDatepicker]="picker" formControlName="dob">
+                <mat-hint>MM/DD/YYYY</mat-hint>
+                <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                <mat-datepicker #picker></mat-datepicker>
+              </mat-form-field>
+
+              <button mat-raised-button color="primary" style="margin-top: 20px;  width: 50%;" type="submit">Submit</button>
+
+            </form>
+
+          </mat-card>
+        </div>
+      <div class="col-6">
+
+        <mat-card style="margin: 1rem">
+
+          <div class="row" style="margin-top: 20px">
+            <div class="col">
+              <h5>E-mail</h5>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="col">
+              <p>{{email}}</p>
+            </div>
+          </div>
+          <div class="row" style="margin-top: 20px">
+          <div class="col">
+            <h5>Username</h5>
+          </div>
+        </div>
+
+          <div class="row">
+            <div class="col">
+              <p>{{username}}</p>
+            </div>
+          </div>
+          <div class="row" style="margin-top: 20px">
+            <div class="col">
+              <h5>Date of Birth</h5>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="col">
+              <p>{{dob | date}}</p>
+            </div>
+          </div>
+
+        </mat-card>
+
+
+
+      </div>
+
+      </div>
+
+</div>
+
+

@@ -11,21 +11,18 @@ export class HeaderComponent implements OnInit {
   constructor(public apicallService : ApicallService) { }
 
   isLogged!:any;
-  reloadPage = true;
 
   ngOnInit(): void {
-    this.logout()
+    this.isloggedin();
   }
 
-  logout(){
-    if (localStorage.getItem('token') && sessionStorage.getItem('username')){
-      this.isLogged = true
-      if(this.reloadPage){
-      }
-    } else {
-      this.isLogged = false;
-    }
-    console.log(this.isLogged)
+  isloggedin(){
   }
+
+ logout(){
+    this.apicallService.logOut();
+    this.isLogged = false
+    window.location.reload();
+ }
 
 }

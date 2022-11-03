@@ -38,6 +38,7 @@ export class LoginComponent implements OnInit {
         } else {
           console.log("pass errata")
           window.alert("password errata")
+          window.location.reload()
       }
       }
       , (err) => {

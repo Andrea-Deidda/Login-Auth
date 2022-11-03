@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { ApicallService } from '../../shared/apicall.service';
 import { UserService } from '../../shared/userService/user.service';
 import {LoginComponent} from "../login/login.component";
+import {BugService} from "../../shared/userService/bug.service";
+import {BugData} from "../../models/bugData.model";
 
 @Component({
   selector: 'app-dashboard',
@@ -10,31 +12,43 @@ import {LoginComponent} from "../login/login.component";
 })
 export class DashboardComponent implements OnInit {
 
-  constructor(public apicalService : ApicallService, public userService : UserService){ }
+  bugs : BugData[] = []
+
+  constructor(public bugService : BugService, public apicallService : ApicallService){ }
 
   localStorage!: any;
   username!: any;
+  email: any
+  ELEMENT_DATA: any
+  count : number = 0
 
   ngOnInit(): void {
-    this.username = sessionStorage.getItem('username')
-    console.log("user loggato come: ",this.username)
-    this.localStorage = localStorage.getItem('token')
-    if(localStorage.getItem('token')) {
-
-      this.apicalService.gotoDashboard(localStorage.getItem('token')).subscribe((res : any) =>{
-        if(res && res['status'] === 'ok'){
-          console.log('we are in dashboard')
-        } else {
-          console.log('something went wrong in dashboard...!')
-        }
-      }, (err) => {
-        if(err) {
-          console.log('we got an error dash..')
-        }
-      })
-    }
-
+    this.getAllBug();
+    this.getUserByEmail();
   }
 
+  getAllBug(){
+    this.bugService.getAllBug().subscribe((res : any) =>{
+      console.log(res)
+      this.bugs = res
+      for( let i = 0; i<this.bugs.length; i++){
+        if(sessionStorage.getItem('username') === this.bugs[i].username ) {
+          console.log(this.bugs[i].username)
+          this.count++
+        }
+      }
+      console.log(this.count)
+    })
+  }
 
+  getUserByEmail(){
+    this.apicallService.getUserByEmail(sessionStorage.getItem('username'), localStorage.getItem('token')).subscribe((res : any) =>{
+      this.localStorage = localStorage.getItem('token')
+      this.username = res.username
+      this.email = res.email
+      this.ELEMENT_DATA = res
+    })
+
+
+  }
 }

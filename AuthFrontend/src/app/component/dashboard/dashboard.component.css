@@ -1,3 +1,25 @@
 .p {
     flex: 1 1 auto;
   }
+
+.pointer{
+  cursor: pointer;
+}
+
+.example-container {
+height: calc(205vh - 115vh);
+ background-color: white;
+}
+
+mat-sidenav{
+  width: 200px;
+  background-color: whitesmoke;
+}
+
+.icon-color-bug{
+  color: crimson;
+}
+
+.icon-color-email{
+  color: cadetblue;
+}

@@ -21,7 +21,7 @@ export class SignupComponent implements OnInit {
 
   UserRegistrationForm : FormGroup
 
-  constructor(public apicallService : ApicallService, public router : Router) { 
+  constructor(public apicallService : ApicallService, public router : Router) {
     this.UserRegistrationForm = new FormGroup({
       username : new FormControl('', [Validators.required]),
       email : new FormControl('', [Validators.email, Validators.required]),
@@ -39,6 +39,19 @@ export class SignupComponent implements OnInit {
     if(this.UserRegistrationForm.valid && this.UserRegistrationForm.value.password === this.confirmPassword.nativeElement.value){
       console.log('user form value is ', this.UserRegistrationForm.value)
       this.apicallService.registerUser(this.UserRegistrationForm.value).subscribe( (res : any) => {
+
+        if(res && res.status === 'error' && res.data === 'email già presente'){
+          console.log('email già presente', res)
+          window.alert("email già utilizzata, inserire un altra email")
+          window.location.reload()
+        }
+
+        if(res && res.status === 'error' && res.data === 'username già presente'){
+          console.log('username già presente', res)
+          window.alert("username già utilizzato, inserire un altro username")
+          window.location.reload()
+        }
+
         if(res && res['status'] === 'ok' && res['data']['_id']) {
           this.router.navigate(['/login'])
         }
@@ -47,7 +60,7 @@ export class SignupComponent implements OnInit {
           console.log('We got an error in signup.....!')
         }
       })
-    } 
-  } 
+    }
+  }
 
 }

@@ -1,0 +1,76 @@
+<div class="container" style="padding-top: 5rem;">
+  <mat-card>
+    <mat-card-title style="text-align: center;">Add BUG</mat-card-title>
+    <form class="example-form" [formGroup]="AddBugForm" (ngSubmit)="OnSubmit()">
+      <div class="row" >
+        <div class="col" >
+          <mat-form-field class="example-full-width" appearance="outline" style="width: 100% ;">
+            <mat-label>Title</mat-label>
+            <input matInput placeholder="Title" formControlName="title">
+          </mat-form-field>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col">
+          <mat-form-field appearance="outline" style="width:30%;">
+            <mat-label>Status</mat-label>
+            <mat-select formControlName="status">
+              <mat-option *ngFor="let status of statusValues" [value]="status.value">
+                {{status.name}}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+        </div>
+
+
+      </div>
+
+      <div class="row">
+          <div class="col" >
+            <mat-form-field class="example-full-width" appearance="outline" style="width: 100% ;">
+              <mat-label>Description</mat-label>
+              <textarea  matInput placeholder="Description" formControlName="description"></textarea>
+            </mat-form-field>
+          </div>
+
+      </div>
+
+      <div class="row">
+
+        <div class="col">
+          <mat-form-field appearance="outline" style="width:60%;">
+            <mat-label>Severity</mat-label>
+            <mat-select formControlName="severity">
+              <mat-option *ngFor="let severity of severityValues" [value]="severity.value">
+                {{severity.name}}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+        </div>
+
+        <div class="col">
+            <mat-form-field appearance="outline" >
+              <mat-label>Choose a date</mat-label>
+              <input matInput [matDatepicker]="picker" formControlName="dob">
+              <mat-hint>MM/DD/YYYY</mat-hint>
+              <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+              <mat-datepicker #picker></mat-datepicker>
+            </mat-form-field>
+          </div>
+      </div>
+
+      <div class="row" style="margin-top: 10px">
+        <div class="col-6">
+          <button mat-raised-button color="primary" style="width: 100%;" type="submit">Create Bug</button>
+        </div>
+        <div class="col-6">
+          <button mat-flat-button color="warn" style="width: 100%;" type="reset">Clear</button>
+        </div>
+
+      </div>
+
+    </form>
+  </mat-card>
+</div>
+

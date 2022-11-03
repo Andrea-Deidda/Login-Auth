@@ -21,6 +21,14 @@ import {HttpClientModule} from '@angular/common/http'
 import {MatToolbarModule} from '@angular/material/toolbar';
 import {MatIconModule} from '@angular/material/icon';
 import { HeaderComponent } from './component/header/header.component';
+import {MatTableModule} from '@angular/material/table';
+import { AccountComponent } from './component/account/account.component';
+import {MatMenuModule} from '@angular/material/menu';
+import { FooterComponent } from './component/footer/footer.component';
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import { AddBugComponent } from './component/add-bug/add-bug.component';
+import {MatSidenavModule} from '@angular/material/sidenav';
+
 
 @NgModule({
   declarations: [
@@ -28,7 +36,11 @@ import { HeaderComponent } from './component/header/header.component';
     LoginComponent,
     DashboardComponent,
     SignupComponent,
-    HeaderComponent
+    HeaderComponent,
+    AccountComponent,
+    FooterComponent,
+    AddBugComponent,
+
   ],
   imports: [
     BrowserModule,
@@ -47,7 +59,11 @@ import { HeaderComponent } from './component/header/header.component';
     MatNativeDateModule,
     MatButtonModule,
     MatToolbarModule,
-    MatIconModule
+    MatIconModule,
+    MatTableModule,
+    MatMenuModule,
+    FontAwesomeModule,
+    MatSidenavModule
   ],
   providers: [],
   bootstrap: [AppComponent]

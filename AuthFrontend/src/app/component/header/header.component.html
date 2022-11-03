@@ -1,33 +1,50 @@
 
-<div *ngIf="!(isLogged)">
+<div *ngIf="!(apicallService.isUserLoggedIn())">
   <p>
     <mat-toolbar color="primary">
-      <button mat-icon-button class="example-icon" aria-label="Example icon-button with menu icon">
-        <mat-icon>menu</mat-icon>
-      </button>
-      <span>My App</span>
+      <span>Bug Tracking System</span>
       <span class="example-spacer"></span>
-      <span style="margin-right: 10px"><a [routerLink]="['/login']">Login</a></span>
-      <span style="margin-right: 10px"><a [routerLink]="['/signup']">Signup</a></span>
-      <button mat-icon-button class="example-icon" aria-label="Example icon-button with share icon">
-        <mat-icon>share</mat-icon>
+      <button [routerLink]="['/dashboard']" mat-icon-button class="example-icon" >
+        <mat-icon>home</mat-icon>
       </button>
+      <button mat-button [matMenuTriggerFor]="menu">
+        <button mat-icon-button class="example-icon" aria-label="Example icon-button with share icon">
+          <mat-icon>account_circle</mat-icon>
+        </button>
+      </button>
+      <mat-menu #menu="matMenu">
+        <button mat-menu-item [routerLink]="['/login']">Login</button>
+        <button mat-menu-item [routerLink]="['/signup']">SignUp</button>
+      </mat-menu>
+
     </mat-toolbar>
   </p>
 </div>
 
-<div *ngIf="isLogged">
+<div *ngIf="apicallService.isUserLoggedIn()">
   <p>
     <mat-toolbar color="primary">
-      <button mat-icon-button class="example-icon" aria-label="Example icon-button with menu icon">
-        <mat-icon>menu</mat-icon>
-      </button>
-      <span>My App</span>
+      <span>Bug Tracking System</span>
       <span class="example-spacer"></span>
-      <span style="margin-right: 10px">Logout</span>
-      <button mat-icon-button class="example-icon" aria-label="Example icon-button with share icon">
-        <mat-icon>share</mat-icon>
+      <button [routerLink]="['/dashboard']" mat-icon-button class="example-icon" >
+        <mat-icon>home</mat-icon>
       </button>
+      <button mat-button [matMenuTriggerFor]="menu">
+        <button mat-icon-button class="example-icon" aria-label="Example icon-button with share icon">
+        <mat-icon>account_circle</mat-icon>
+        </button>
+      </button>
+      <mat-menu #menu="matMenu">
+        <button mat-menu-item [routerLink]="['/addBug']">New Bug</button>
+        <button mat-menu-item>My Bug</button>
+        <button mat-menu-item [routerLink]="['/dashboard']">All Bug</button>
+        <button mat-menu-item [routerLink]="['/account']">Account</button>
+        <button mat-menu-item (click)="logout()">Logout</button>
+      </mat-menu>
+
+
     </mat-toolbar>
   </p>
 </div>
+
+
