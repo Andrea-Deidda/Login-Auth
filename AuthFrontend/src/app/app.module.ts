@@ -28,6 +28,7 @@ import { FooterComponent } from './component/footer/footer.component';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { AddBugComponent } from './component/add-bug/add-bug.component';
 import {MatSidenavModule} from '@angular/material/sidenav';
+import { StoreModule } from '@ngrx/store';
 
 
 @NgModule({
@@ -63,7 +64,8 @@ import {MatSidenavModule} from '@angular/material/sidenav';
     MatTableModule,
     MatMenuModule,
     FontAwesomeModule,
-    MatSidenavModule
+    MatSidenavModule,
+    StoreModule.forRoot({}, {})
   ],
   providers: [],
   bootstrap: [AppComponent]

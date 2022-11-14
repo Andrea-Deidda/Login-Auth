@@ -32,7 +32,7 @@ export class AddBugComponent implements OnInit {
       status : new FormControl('', [Validators.required]),
       severity : new FormControl('', [Validators.required]),
       description : new FormControl('', [Validators.required]),
-      dob : new FormControl('', [Validators.required]),
+      dob : new FormControl(),
       username : new FormControl()
   })}
 
@@ -42,6 +42,7 @@ export class AddBugComponent implements OnInit {
   OnSubmit(){
     if(this.AddBugForm.valid ){
       this.AddBugForm.value.username = sessionStorage.getItem('username')
+      this.AddBugForm.value.dob = Date.now()
       console.log('user form value is ', this.AddBugForm.value)
       this.bugService.addBug(this.AddBugForm.value).subscribe( (res : any) => {
           window.alert('Bug creato con successo')
